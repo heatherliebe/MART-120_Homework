@@ -1,0 +1,96 @@
+
+ /*madimi font*/
+  /* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* Applying font to h1 tag */
+h1 {
+  font-family: 'Roboto', sans-serif; /* Use Roboto font with fallback to sans-serif */
+}
+
+  div { background-color: gray;}
+
+ /*class selector area hikes*/
+ .match {color: rgb(20, 96, 88);}
+
+ /* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Apply styles to header */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Apply styles to navigation */
+  nav ul {
+    list-style-type: none;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 10px;
+    font-family: 'Roboto', sans-serif; /* Use Roboto font with fallback to sans-serif */
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Apply styles to div content */
+  div {
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  /* Apply styles to body content */
+  body {
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  /* Apply styles to footer */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+  }
+  /* Apply styles to Line Items*/
+  li {text-decoration: none;
+      color:azure;
+      font-family: 'Roboto', sans-serif; /* Use Roboto font with fallback to sans-serif */
+    }
+
+  a {text-decoration: none;
+    color: rgb(20, 96, 88);
+}
+
+/* Apply picture styles*/
+picture { padding: 20px;
+    padding-bottom: 20px;
+}
+
+/* Apply background image to second sheet * instead my index page*/
+
+  .background-image {
+    background-image: url('topog.jpg');
+    /* Additional background properties */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
