@@ -1,0 +1,135 @@
+<html>
+    <title>Homepage</title>
+        <header>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="mainstyle.css">
+            
+            <nav>
+            <a href="whitefish.html" target="_blank">
+                <button style="background-color: rgb(21, 37, 59); color: white;">Whitefish</button>
+            </a>
+            <a href="missoula.html" target="_blank">
+                <button style="background-color: rgb(21, 37, 59); color: white;">Missoula</button>
+            </a>
+            <a href="kalispell.html" target="_blank">
+                <button style="background-color: rgb(21, 37, 59); color: white;">Kalispell</button>
+            </a>
+        </nav>
+       
+            <style>
+                
+                .error {
+        border: 1px solid red;
+    }
+     
+     div { background-position: top;}
+    
+    
+       </style>
+      
+    <meta charset="utf-8">
+        </header>
+         <body class="background-image">
+            <!-- Your page content here -->
+        
+
+            
+           
+                
+             
+            <h1 style="color:white;"> Welcome Hikers! </h1>
+            <br>
+            <h3 style="color:white;">Please fill out your information to join our list</h3>
+            <form style="color: white;"> 
+            <form id="myForm" onsubmit="return validateForm()">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the terms</label>
+                <br>
+                <input type="submit" value="Submit">
+            </form></form>
+    
+        <script>
+            function validateForm() {
+                let nameInput = document.getElementById('name');
+                let emailInput = document.getElementById('email');
+                let termsCheckbox = document.getElementById('terms');
+    
+                let isValid = true;
+    
+                if (nameInput.value.trim() === '') {
+                    nameInput.classList.add('error');
+                    isValid = false;
+                } else {
+                    nameInput.classList.remove('error');
+                }
+    
+                if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) {
+                    emailInput.classList.add('error');
+                    isValid = false;
+                } else {
+                    emailInput.classList.remove('error');
+                }
+    
+                if (!termsCheckbox.checked) {
+                    termsCheckbox.classList.add('error');
+                    isValid = false;
+                } else {
+                    termsCheckbox.classList.remove('error');
+                }
+    
+                return isValid;
+            }
+    
+            function isValidEmail(email) {
+                // Basic email validation using a regular expression
+                return /\S+@\S+\.\S+/.test(email);
+            }
+        </script>
+       
+   
+   
+    <br>
+    <br><br><br>
+    <br>
+    <br>
+    <br>
+  
+
+   
+    
+           </body>
+           <br>
+           <br><br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+           <br>
+            <footer>
+              
+                <p style="color: rgb(26, 98, 113);"> Heather Liebe 10 March 2024</p>
+                   
+        
+            </footer>
+        
+    
+</html>

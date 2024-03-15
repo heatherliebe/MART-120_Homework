@@ -18,7 +18,9 @@
        
             <style>
                 
-    
+                .error {
+        border: 1px solid red;
+    }
      
      div { background-position: top;}
     
@@ -36,17 +38,61 @@
                 
              
         <h1 style="color:white;"> Welcome Hikers! </h1>
-        <h3 style="color:white;"> Choose your favorite hiking location </h3>
-        <p style="color:white;"
-                form>
-                      <input type="radio" id="whitefish" name="fav_language" value="Whitefish">
-                      <label for="whitefish">Whitefish</label><br>
-                      <input type="radio" id="missoula" name="fav_language" value="Missoula">
-                      <label for="missoula">Missoula</label><br>
-                      <input type="radio" id="kalispell" name="fav_language" value="Kalispell">
-                      <label for="kalispell">Kalispell</label>
-                    </form> 
-                </p>
+        <br>
+        <h3 style="color:white;">Please fill out your information to join our list</h3>
+        <form style="color: white;"> 
+        <form id="myForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the terms</label>
+            <br>
+            <input type="submit" value="Submit">
+        </form></form>
+
+    
+        <script>
+            function validateForm() {
+                let nameInput = document.getElementById('name');
+                let emailInput = document.getElementById('email');
+                let termsCheckbox = document.getElementById('terms');
+    
+                let isValid = true;
+    
+                if (nameInput.value.trim() === '') {
+                    nameInput.classList.add('error');
+                    isValid = false;
+                } else {
+                    nameInput.classList.remove('error');
+                }
+    
+                if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) {
+                    emailInput.classList.add('error');
+                    isValid = false;
+                } else {
+                    emailInput.classList.remove('error');
+                }
+    
+                if (!termsCheckbox.checked) {
+                    termsCheckbox.classList.add('error');
+                    isValid = false;
+                } else {
+                    termsCheckbox.classList.remove('error');
+                }
+    
+                return isValid;
+            }
+    
+            function isValidEmail(email) {
+                // Basic email validation using a regular expression
+                return /\S+@\S+\.\S+/.test(email);
+            }
+        </script>
+       
    
     </div>
     <br>
@@ -54,19 +100,7 @@
     <br>
     <br>
     <br>
-  
-<section>
-    <h3 style="color:white;">Please fill out your information to join our list</h3>
-   
-    <form style="color:white;">
-     First Name: <input type="text"><br>
-     Last Name: <input type="text"><br>
-     Email: <input type="text"><br>
-     <button type="button">Submit</button>
-     
-    </form>
-</section>
-   
+
     
            </body>
            <br>
