@@ -1,27 +1,77 @@
+var headX = 250;
+var headY = 150;
+var headDirection = 1;
+var headSpeed = 1;
+
+
+var hairX = 245;
+var hairY = 165;
+var hairDirection = 1;
+var hairSpeed = 1;
+
+var sunX = 200;
+var sunY = 185;
+var sunDirection = 1;
+var sunSpeed = 1;
+var sunColor;
+
+var mouthX = 247;
+var mouthY = 176;
+var mouthDirection = 1;
+var mouthSpeed = 1;
+
+
+var size = 22;
+var count = 0;
+var sizeDirection = 2;
+
+
 function setup() {
-    createCanvas(600, 600);
-  }
+   createCanvas(600, 600);
+
+   
+  // color changes
+ 
+    sunColor = color(214, 55, 1);
+   
+}
   
   function draw() {
     background(0, 115, 128);
     textSize(50);
     text("Make Art Everday!", 30,80);
-  
+   
+ 
     
       // sun
-      fill(204, 85, 0);
-      circle(500,20,175);
-    
-       
-    
-    
+      fill(sunColor);
+      circle(500, sunY, 175);
+      sunY += sunDirection * sunSpeed
+      if (sunY >= 400 || sunY <= 10) {
+      sunDirection *= -1;
+      sunSpeed = random(random() *10); // Random vertical speed
+      sunColor = color(random(255), random(255), random(255)); // Change sun color
+      }
+     
       //hair
       fill(204, 85, 0);
-      circle(245,165,150);
+      circle(hairX, hairY, 175);
+      hairX += hairDirection * hairSpeed;
+      if (hairX >= 260 || hairX <= 215) {
+      hairDirection *= -1;
+      hairSpeed = random(1,3); // Random horizontal speed 
+      }
     
       //head
       fill(173, 216, 200);
-      circle(250,150,100);
+      circle(headX, headY, 100);
+      headX += headDirection * headSpeed;
+      if (headX >= 318 || headX <= 200) 
+      {
+      headDirection *= -1;
+      headSpeed = random(1,4); // Random horizontal speed
+        
+      }
     
       // body
       fill(0, 148, 148);
@@ -37,7 +87,14 @@ function setup() {
       circle(248, 150, 10)
   
       //mouth
-      ellipse (247, 176, 30, 10);
+      ellipse (247, mouthY, 30, 10);
+      mouthY += mouthDirection * mouthSpeed;
+      if(mouthY <= 125 || mouthY >=190)
+      {
+      mouthDirection *= -1;
+      mouthSpeed = random(); // Random vertical speed
+      }
+
     
       // right arm
       fill(10, 24, 120);
@@ -104,11 +161,17 @@ function setup() {
     //artist
       
       fill(220);
-      textSize(22);
+      textSize(size);
+      size+= sizeDirection;
+      count++;
+      if(count > 5)
+      {
+          sizeDirection *=-1;
+          count = 0;
+      }
       text("Heather Liebe", 550,570);
   
   
   }
-  
-  
+ 
   
