@@ -39,12 +39,15 @@ function draw() {
   player.show();
   player.update();
 
-  //  obstacles 
+  //  obstacles and check for collisions
   for (var obstacle of obstacles) {
     obstacle.show();
     obstacle.update();
 
-    
+    // collisions with player
+    if (player.hits(obstacle)) {
+      gameOver();
+    }
   }
 
   // YOU Win!
@@ -112,7 +115,7 @@ function Player(x, y) {
   }
 
   this.update = function() {
-    // win game
+    // Check if player reaches top
     if (this.y < 0) {
       winGame();
     }
@@ -122,7 +125,7 @@ function Player(x, y) {
 function Obstacle() {
   this.x = random(width - 20);
   this.y = random(height / 2);
-  this.size = 20;
+  this.size = 35;
 
   this.show = function() {
     fill(255,255,255);
