@@ -36,7 +36,7 @@ function draw() {
   player.show();
   player.update();
 
-  //  obstacles and check for collisions
+  //  obstacles 
   for (var obstacle of obstacles) {
     obstacle.show();
     obstacle.update();
@@ -109,7 +109,7 @@ function Player(x, y) {
   }
 
   this.update = function() {
-    // Check if player reaches top
+    // win game
     if (this.y < 0) {
       winGame();
     }
