@@ -1,159 +1,163 @@
-// x and y for my character
-var characterX = 100;
-var characterY = 100;
-// define the key codes for each letter
-var w = 87; 
-var s = 83;
-var a = 65;
-var d = 68;
+var player;
+var obstacles = [];
+var exitY;
+var score = 0;
 
-// x and y for a shape
-var shapeX = 30;
-var shapeY = 50;
-var shapeXSpeed;
-var shapeYSpeed;
+function setup() {
+  createCanvas(400, 400);
+  player = new Player(width / 2, height - 50);
+  exitY = 50;
 
-// create a shape when the mouse is clicked
-var mouseShapeX;
-var mouseShapeY;
-function setup()
-{
-    createCanvas(500, 600);
-    // get a random speed when the it first starts
-    shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-    shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-    createCharacter(200,350);
-}
-
-function draw()
-{
-    background(120,45,78);
-    stroke(0);
-    fill(0);
-    
-    // call createBorders function
-    createBorders(10);
-
-    // exit message
-    textSize(16);
-    text("EXIT", width-50,height-50)
-
-    //createCharacter(200,350);
-    drawCharacter();
-    characterMovement();
-
-
-    // potential enemy
-    fill(13,145,14);
-    // draw the shape
-    circle(shapeX, shapeY, 10);
-
-     // get a random speed when the it first starts
-     shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-     shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-
-    // move the shape
-    shapeX += shapeXSpeed;
-    shapeY += shapeYSpeed;
-    // check to see if the shape has gone out of bounds
-    if(shapeX > width)
-    {
-        shapeX = 0;
-    }
-    if(shapeX < 0)
-    {
-        shapeX = width;
-    }
-    if(shapeY > height)
-    {
-        shapeY = 0;
-    }
-    if(shapeY < 0)
-    {
-        shapeY = height;
-    }
-
-    // check to see if the character has left the exit
-    if(characterX > width && characterY > width-50)
-    {
-        fill(0);
-        stroke(5);
-        textSize(26);
-        text("You Win!", width/2-50, height/2-50);
-    }
-
-    // create the shape based on the mouse click
-    fill(120,130,140);
-    circle(mouseShapeX, mouseShapeY, 25);
-}
-
-function characterMovement()
-{
-    // handle the keys
-    if(keyIsDown(w))
-    {
-        characterY -= 10;   
-    }
-    if(keyIsDown(s))
-    {
-        characterY += 10;   
-    }
-    if(keyIsDown(a))
-    {
-        characterX -= 10;   
-        console.log("movement: " + characterX);
-    }
-    if(keyIsDown(d))
-    {
-        characterX += 10;   
-    }
-}
-function createCharacter(x,y)
-{
-    characterX = x;
-    characterY = y;
-    console.log(characterX);
-    //character
-    
-   // circle(characterX,characterY,25);
-}
-
-function drawCharacter()
-{
-    fill(23,40,123);
-    circle(characterX,characterY,25);
-}
-function createBorders(thickness)
-{
-    // top border
-    rect(0,0,width,thickness);
-    // left border
-    rect(0,0,thickness,height);
-    // bottom border
-    rect(0, height-thickness,width, thickness);
-    // right upper border
-    rect(width-thickness,0,thickness,height-50);
-}
-
-function mouseClicked()
-{
-    mouseShapeX = mouseX;
-    mouseShapeY = mouseY;
-}
-/*
-function keyPressed() {
-    if (keyCode === LEFT_ARROW) {
-        characterX -= 10;
-    } 
-    else if (keyCode === RIGHT_ARROW) {
-        characterX += 10;
-    }
-    else if (keyCode === UP_ARROW) {
-        characterY -= 10;
-    }
-    else if (keyCode === DOWN_ARROW) {
-        characterY += 10;
-    }
-
+  //  obstacles
+  for (var i = 0; i < 3; i++) {
+    obstacles.push(new Obstacle());
   }
-  */
+
+  //  moving obstacles
+  obstacles.push(new MovingObstacle());
+  obstacles.push(new MovingObstacle());
+}
+
+function draw() {
+  var bgColor = lerpColor(color(0, 0, 255), color(128, 0, 128), map(mouseY, 0, height, 0, 1));
+  background(bgColor);
+
+   //  finish line
+  fill(0, 255, 0);
+  rect(0, exitY - 20, width, 20);
+  
+  //  "Exit" text
+  textSize(24);
+  fill(255);
+  textAlign(CENTER);
+  text('Exit', width / 2, 30);
+
+  //  player
+  player.show();
+  player.update();
+
+  //  obstacles and check for collisions
+  for (var obstacle of obstacles) {
+    obstacle.show();
+    obstacle.update();
+
+    
+  }
+
+  // YOU Win!
+  if (player.y < exitY) {
+    winGame();
+  }
+}
+
+function keyPressed() {
+  if (key === 'W' || key === 'w') {
+    player.move(0, -50);
+  } else if (key === 'S' || key === 's') {
+    player.move(0, 50);
+  } else if (key === 'A' || key === 'a') {
+    player.move(-50, 0);
+  } else if (key === 'D' || key === 'd') {
+    player.move(50, 0);
+  }
+}
+
+function mouseClicked() {
+  addNonMovingObstacle();
+}
+
+function addNonMovingObstacle() {
+  obstacles.push(new Obstacle());
+}
+
+function gameOver() {
+  textSize(32);
+  fill(255, 0, 0);
+  textAlign(CENTER, CENTER);
+  text('Game Over!', width / 2, height / 2);
+  noLoop();
+}
+
+function winGame() {
+  textSize(32);
+  fill(0, 255, 0);
+  textAlign(CENTER, CENTER);
+  text('You Win!', width / 2, height / 2);
+  noLoop();
+}
+
+function Player(x, y) {
+  this.x = x;
+  this.y = y;
+  this.size = 20;
+
+  this.show = function() {
+    fill(0);
+    ellipse(this.x, this.y, this.size);
+  }
+
+  this.move = function(x, y) {
+    if (this.x + x >= 0 && this.x + x <= width && this.y + y >= 0 && this.y + y <= height) {
+      this.x += x;
+      this.y += y;
+    }
+  }
+
+  this.hits = function(obstacle) {
+    let d = dist(this.x, this.y, obstacle.x, obstacle.y);
+    return d < this.size / 2 + obstacle.size / 2;
+  }
+
+  this.update = function() {
+    // Check if player reaches top
+    if (this.y < 0) {
+      winGame();
+    }
+  }
+}
+
+function Obstacle() {
+  this.x = random(width - 20);
+  this.y = random(height / 2);
+  this.size = 20;
+
+  this.show = function() {
+    fill(255,255,255);
+    rect(this.x, this.y, this.size, this.size);
+  }
+
+  this.update = function() {
+    // No need to update static obstacles
+  }
+}
+
+function MovingObstacle() {
+  this.size = 20;
+  this.speedX = random(-2, 2);
+  this.speedY = random(-2, 2);
+  this.x = random(width - this.size);
+  this.y = random(height - this.size);
+
+  this.show = function() {
+    fill(255, 0, 0);
+    rect(this.x, this.y, this.size, this.size);
+  }
+
+  this.update = function() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // if obstacle goes off screen and reappear on the opposite side
+    if (this.x > width) {
+      this.x = -this.size;
+    } else if (this.x + this.size < 0) {
+      this.x = width;
+    }
+
+    if (this.y > height) {
+      this.y = -this.size;
+    } else if (this.y + this.size < 0) {
+      this.y = height;
+    }
+  }
+}
