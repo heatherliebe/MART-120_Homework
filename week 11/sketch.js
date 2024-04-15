@@ -1,4 +1,6 @@
-//My Game- get across the finish line. Use the WASD keys to navigate the player. If you click the mouse more obstacles will be added.
+//My Game- Get across the finish line. 
+//Use the WASD keys to navigate the player. If you click the mouse more obstacles will be added.
+
 var player;
 var obstacles = [];
 var exitY;
