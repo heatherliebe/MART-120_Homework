@@ -39,7 +39,7 @@ function draw() {
   player.show();
   player.update();
 
-  //  obstacles and check for collisions
+  //  obstacles
   for (var obstacle of obstacles) {
     obstacle.show();
     obstacle.update();
