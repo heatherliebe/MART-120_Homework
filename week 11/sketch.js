@@ -22,8 +22,7 @@ function setup() {
 }
 
 function draw() {
-  var bgColor = lerpColor(color(0, 0, 255), color(128, 0, 128), map(mouseY, 0, height, 0, 1));
-  background(bgColor);
+  background(47, 90, 109);
 
    //  finish line
   fill(0, 255, 0);
