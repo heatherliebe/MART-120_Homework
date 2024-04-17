@@ -4,7 +4,7 @@
 var player;
 var obstacles = [];
 var exitY;
-var score = 0;
+
 
 function setup() {
   createCanvas(400, 400);
