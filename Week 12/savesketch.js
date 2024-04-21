@@ -1,25 +1,32 @@
 
-var ball1 = {
+var joy = {
+  x: 100,
+  y: 100,
+  xspeed: 2,
+  yspeed: -4
+  };
+    
+  var ball1 = {
   x: 300,
   y: 200,
   xspeed: 4,
   yspeed: -3
-};
+  };
 
-var ball2 = {
+  var ball2 = {
   x: 100,
   y: 100,
   xspeed: -3,
   yspeed: 2
-};
+  };
 
 var playerX = 300;
-var playerY = 300;
+var playerY = 350;
 var exitY;
 var blockX = 50;
 var blockX = 100;
-var mousex = 0;
-var mousey = 0;
+var mousex = 100;
+var mousey = 145;
 
 
 
@@ -29,7 +36,7 @@ function setup() {
   
   //  obstacles
   for (var i = 0; i < 3; i++) {
-    block(new block());
+   block(new block());
   }
   
 }
@@ -37,6 +44,10 @@ function setup() {
 function draw() {
   background(47, 90, 109); 
  
+  move(joy);//move the square
+  display(joy);//show square
+  bounce(joy);//bounce square
+  
   move(ball1); // Move the first ball
   move(ball2); // Move the second ball
   display(ball1); // ball 1
@@ -46,20 +57,22 @@ function draw() {
   player();
   block();
   ellipse(mousex, mousey, 25, 25);
-  tree(100, 200, 50);
+  tree(300, 200, 50);
   tree(100, 75, 50);
   tree(100, 320, 50);
-  mountain (100, 100, 58, 20, 86, 75);
+  mountain (300, 150, 375, 50, 450, 150);
+  border (0,30,7,550);
+  border (0,393,600,7);
+  border (593,30,7,550);
+  border (0,30,250,20);
+  border (300,30,300,20);
   
-   //  finish line
-fill(0, 255, 0);
-rect(0, exitY - 20, width, 20);
-
+ 
 //  "Exit" text
 textSize(24);
 fill(255);
 textAlign(CENTER);
-text('Exit', width / 2, 30);
+text('Exit', width/2.17, 30);
   
   // YOU Win!
   if (playerY < exitY) {
@@ -67,19 +80,39 @@ text('Exit', width / 2, 30);
   }
     
 }
+//moving square
+function move(joy) {
+  joy.x += joy.xspeed;
+  joy.y += joy.yspeed;
+}
 
-//moving ball1
+//moving ball
 function move(ball) {
   ball.x += ball.xspeed;
   ball.y += ball.yspeed;
 }
 
-//moving obstacle ball 1
+//display moving square
+function display(joy) {
+  fill(0,0,255);
+  strokeWeight(2);
+  square(joy.x, joy.y, 10);
+  
+}
+//moving obstacle ball 
 function display(ball) {
   stroke(255);
   strokeWeight(4);
   noFill();
   ellipse(ball.x, ball.y, 24, 24);
+}
+//bounce square
+function bounce(joy) {
+  if (joy.x > width || joy.x < 0) {
+    }
+  if (joy.y > height || joy.y < 0) {
+    joy.yspeed *= -1;
+  }
 }
 
 function bounce(ball) {
@@ -92,7 +125,12 @@ function bounce(ball) {
   }
 }
   
-
+//border
+  function border( x,y,w,h) {
+  fill(0,255,0);
+  rect(x,y,w,h);
+  
+  }
 
 //player
 function player() {
@@ -138,9 +176,8 @@ function mouseClicked() {
 
 
 function block(){
-  fill (255, 255, 255)
-  noStroke();
-  square(200,300,25)
+  fill (255, 255, 255);
+  square(200,300,25);
   
 }
 //tree non moving objects
@@ -155,5 +192,5 @@ function tree(x, y, diameter){
 //mountain non moving objects
     function mountain (x1,y1,x2,y2,x3,y3){
     fill(255)
-    triangle();
+    triangle(x1,y1,x2,y2,x3,y3);
     }
