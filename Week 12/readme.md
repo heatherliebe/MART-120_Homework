@@ -1,3 +1,3 @@
-Week 12. I had some help with week 11 code and I am finding it challenging to edit because it is too technical.
+Week 12. I had some help with week 11 code and I am finding it challenging to edit because it is too technical. I remade my game so it differs from week 11 a little bit. The HW said to use last weeks code, but I needed to remake it to understand it better. I am much happier with the end result and was able to edit for fun and creativity as desired! The only difference is, I didn't code the mouse click in the same way and it doesn't add an object with each click but adds an object where you click. 
 
-This is my game that I made. simple move across the line and you win. Use the AWDS keys to move the player. When you click the mouse obstacles are added to the screen.
+ Use the AWDS keys to move the player. When you click the mouse an obstacle is added to the screen.
