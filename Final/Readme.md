@@ -1,0 +1,1 @@
+I had a lot of trouble deciding what to do my final on. I found this artistic project and though it had all the elements that we learned plus some challenging new techniques. Plus I think I can develope it into something more later.
